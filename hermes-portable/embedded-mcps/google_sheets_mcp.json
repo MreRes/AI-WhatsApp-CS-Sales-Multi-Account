@@ -1,0 +1,122 @@
+{
+  "id": "google-sheets-mcp",
+  "name": "Google Sheets MCP",
+  "version": "1.0.0",
+  "description": "MCP tool untuk membaca dan mengakses Google Sheets menggunakan API key",
+  "author": "Hermes Integration",
+  "tools": [
+    {
+      "name": "read_sheet",
+      "description": "Baca data dari Google Sheet dalam range tertentu",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "api_key": {
+            "type": "string",
+            "description": "Google Sheets API key"
+          },
+          "spreadsheet_id": {
+            "type": "string",
+            "description": "ID dari spreadsheet (dari URL: docs.google.com/spreadsheets/d/{ID})"
+          },
+          "range_name": {
+            "type": "string",
+            "description": "Range untuk dibaca (contoh: Sheet1!A1:D10)",
+            "default": "Sheet1!A1:Z1000"
+          }
+        },
+        "required": ["api_key", "spreadsheet_id"]
+      }
+    },
+    {
+      "name": "get_metadata",
+      "description": "Ambil metadata spreadsheet (judul, daftar sheets, dll)",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "api_key": {
+            "type": "string",
+            "description": "Google Sheets API key"
+          },
+          "spreadsheet_id": {
+            "type": "string",
+            "description": "ID dari spreadsheet"
+          }
+        },
+        "required": ["api_key", "spreadsheet_id"]
+      }
+    },
+    {
+      "name": "query_sheet",
+      "description": "Search/query data dalam sheet berdasarkan text",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "api_key": {
+            "type": "string",
+            "description": "Google Sheets API key"
+          },
+          "spreadsheet_id": {
+            "type": "string",
+            "description": "ID dari spreadsheet"
+          },
+          "query": {
+            "type": "string",
+            "description": "Text untuk dicari"
+          },
+          "range_name": {
+            "type": "string",
+            "description": "Range untuk dicari",
+            "default": "Sheet1!A1:Z1000"
+          }
+        },
+        "required": ["api_key", "spreadsheet_id", "query"]
+      }
+    },
+    {
+      "name": "get_json",
+      "description": "Ambil data sheet dan convert ke JSON objects (dengan headers)",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "api_key": {
+            "type": "string",
+            "description": "Google Sheets API key"
+          },
+          "spreadsheet_id": {
+            "type": "string",
+            "description": "ID dari spreadsheet"
+          },
+          "range_name": {
+            "type": "string",
+            "description": "Range untuk dibaca",
+            "default": "Sheet1!A1:Z1000"
+          },
+          "has_header": {
+            "type": "boolean",
+            "description": "Apakah row pertama adalah header",
+            "default": true
+          }
+        },
+        "required": ["api_key", "spreadsheet_id"]
+      }
+    }
+  ],
+  "env_vars": {
+    "GOOGLE_SHEETS_API_KEY": {
+      "description": "Google Sheets API key (bisa juga di-pass langsung ke tools)",
+      "optional": false
+    }
+  },
+  "capabilities": {
+    "read": true,
+    "write": false,
+    "delete": false,
+    "notes": "API key biasa hanya support READ operations. Untuk WRITE/UPDATE, gunakan Service Account."
+  },
+  "authentication": {
+    "type": "api_key",
+    "setup_url": "https://console.cloud.google.com/",
+    "docs": "https://developers.google.com/sheets/api/guides/concepts"
+  }
+}
