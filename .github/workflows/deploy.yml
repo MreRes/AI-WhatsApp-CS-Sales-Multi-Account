@@ -25,7 +25,7 @@ jobs:
       packages: write
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
@@ -80,7 +80,7 @@ jobs:
     # stops cleanly at "build & push" instead of failing.
     if: ${{ vars.DEPLOY_ENABLED == 'true' }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
       - name: Deploy over SSH (pull new images + migrate + up)
         uses: appleboy/ssh-action@v1
