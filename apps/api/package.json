@@ -64,7 +64,7 @@
     "@nestjs/schedule": "^4.1.2",
     "@nestjs/swagger": "^11.4.4",
     "@nestjs/websockets": "^10.4.0",
-    "@prisma/client": "^5.22.0",
+    "@prisma/client": "^7.9.1",
     "@whiskeysockets/baileys": "7.0.0-rc13",
     "bcryptjs": "^2.4.3",
     "bullmq": "^5.78.0",
